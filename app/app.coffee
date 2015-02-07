@@ -40,8 +40,8 @@ angular.module 'angular', [
         templateUrl: "main/auth.html"
         controller: "LoginCtrl"
         controllerAs: 'login'
-      .when '/request/:requestId',
-        templateUrl: "main/request.html"
+      .when '/contact',
+        templateUrl: "main/contact.html"
         controller: "HomeCtrl"
 
       .when '/profile/:userId',
@@ -297,13 +297,22 @@ angular.module 'angular', [
     return
 
 
-  .controller "HomeCtrl", ($popover, Auth, $scope, $routeParams, Profile, $firebase, FIREBASE_URL) ->
-    # $scope.profile = Profile(Auth.user.uid).get()
-    $scope.providers = 
-      bob: 
-        name: 'Bob', status: 'online', images: [], phone: '18475551234'
-      joe:
-        name: 'Joe', status: 'online'
+  .controller "HomeCtrl", ($timeout, $popover, Auth, $scope, $routeParams, Profile, $firebase, FIREBASE_URL) ->
+    ref = new Firebase(FIREBASE_URL)
+    $scope.data = {}
+
+    $scope.sending = false
+    $scope.sendForm = (data) ->
+      return  unless data.message.trim().length and $scope.sending is false
+      data.timestamp = Firebase.ServerValue.TIMESTAMP
+      $firebase(ref.child("contactForms")).$push(data)
+      .then ->
+        $scope.sending = true
+        $timeout ->
+          $scope.sending = false
+        , 5000
+        $scope.data = {}
+
     return
   .controller "ProfileCtrl", ($popover, Auth, $scope, $routeParams, Profile, $firebase, FIREBASE_URL) ->
     uid = $routeParams.userId

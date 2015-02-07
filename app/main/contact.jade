@@ -1,0 +1,7 @@
+form(ng-submit="sendForm(data)")
+  fieldset.form-group
+    input.form-control(ng-model='data.name', type='text', placeholder='your name', title='name')
+    input.form-control(ng-model='data.phone', type='text', placeholder='phone', title='name')
+    input.form-control(ng-model='data.email', type='email', placeholder='email', title='name', required='required')
+    input.form-control(ng-model='data.message', type='text', placeholder='your message', title='message', required='required')
+    button.btn.btn-primary(type="submit", ng-disabled="sending") Submit

@@ -24,6 +24,8 @@ html(lang="en")
             a(href='#/') Home
           li(data-match-route='/faq')
             a(href='#/faq') FAQ
+          li(data-match-route='/contact')
+            a(href='#/contact') Contact us
 
         ul.nav.navbar-nav(ng-if="account.roleValue >= 20")
           li(data-match-route='/page-two.*')
