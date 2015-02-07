@@ -1,0 +1,8 @@
+form(ng-submit="")
+  fieldset.form-group
+    input.form-control(ng-model='newMessage.text', type='text', placeholder='provider', title='message', required='required')
+    input.form-control(ng-model='newMessage.text', type='text', placeholder='60123', title='message', required='required')
+    button.btn.btn-primary(type="submit", ng-disabled="sending") Search
+
+div(ng-repeat="provider in providers")
+  messages

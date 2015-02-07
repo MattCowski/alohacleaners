@@ -1,0 +1,42 @@
+.modal(tabindex='-1', role='dialog')
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', ng-click='$hide()') ×
+        h4.modal-title Login
+      .modal-body
+        div(ng-controller="LoginCtrl as login")
+          span(ng-show="user") 
+            | Hello {{user.name}} {{user.displayName}} | {{user.uid}} 
+            a(ng-click="auth.$unauth()") Logout
+
+          .auth-forms(ng-show="!auth.user.uid")
+            h2 Sign up with phone
+            code A phone confirmation will be sent via SMS text message. Alternatively, you may sign up with email below.
+            form(ng-submit='login.authRequestCode(login.phone); confirming = true;', ng-hide="confirming")
+              input.form-control(type='phone', ng-model='login.phone', ui-mask="{{'(999) 999-9999'}}")
+              input.btn.btn-primary(type='submit', value='Sign in')
+            form(ng-submit='login.authWithPhone(login.phone, login.code)', ng-show="confirming")
+              p.text-danger(ng-show='login.error') {{ login.error }}
+              input.form-control(type='phone', ng-model='login.phone', ui-mask="{{'(999) 999-9999'}}", ng-disabled="true")
+              input.form-control(type='phone', ng-model='login.code', placeholder='4 digit code')
+              br
+              input.btn.btn-primary(type='submit', value='Confirm code')
+
+
+
+            h2 Sign up with email
+            form(ng-submit='login.authWithPassword()')
+              p.text-danger(ng-show='login.error') {{ login.error }}
+              input.form-control(type='email', ng-model='login.email', placeholder='Email')
+              br
+              input.form-control(type='password', ng-model='login.password', placeholder='Password')
+              br
+              input.btn.btn-primary(type='submit', value='Log in / Register')
+
+
+      .modal-footer
+        button.btn.btn-default(type='button', ng-click='$hide()') Cancel
+
+
+

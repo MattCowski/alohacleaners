@@ -1,0 +1,54 @@
+b {{provider}}
+table.table
+  tbody
+    tr(ng-repeat="message in messages") 
+      td(ng-class="message.style")
+
+        #voicemail(ng-if="message.voicemail")
+          a(href="{{message.voicemail}}") play voicemail 
+          span.glyphicon.glyphicon-volume-up
+
+        #call(ng-if="message.type == 'call'")
+          a to: {{message.to}}
+          span.glyphicon.glyphicon-earphone
+
+        #sms(ng-if="message.type == 'sms'")
+          a to: {{message.to}}
+          span.glyphicon.glyphicon-phone
+
+        #web(ng-if="message.type =='web'")
+          span.glyphicon.glyphicon-comment
+
+        #deprecated(ng-if="message.device =='web'")
+          span.glyphicon.glyphicon-comment
+
+        #deprecated(ng-if="message.device =='phone'")
+          i to: {{message.to}}
+          span.glyphicon.glyphicon-earphone
+
+        | {{message.from == user.uid ? "you" : message.from}}: 
+        b {{message.text}} 
+        small {{message.timestamp | date :'M/d h:mm a'}} 
+
+        #attachment(ng-if="message.attachment")
+          img.img-responsive.img-rounded(ng-src='{{ message.thumb || message.attachment}}', width="40")
+          span.glyphicon.glyphicon-paperclip
+
+        #admin-ctrl(ng-if="user.profile.roleValue >= 20")
+          a(ng-click="messages.$remove(message)") remove 
+          a(ng-click="saveImage({url: message.attachment, store: [':original', 'thumb'], thumb: true})") save attachment
+
+        //- #send-status(ng-hide="message.sent")
+        #send-status(ng-show="sending")
+          small Sending message. Please wait...
+          progressbar(value="10", type="success") {{message.progress}}%
+
+
+
+form(ng-submit="addMessage(newMessage)")
+  fieldset.form-group
+    input.form-control(ng-model='newMessage.text', type='text', placeholder='Your message', title='message', required='required')
+    button.btn.btn-primary(type="submit", ng-disabled="sending") Send
+    button.btn.btn-default Upload pictures
+    button.btn.btn-default Hire
+  

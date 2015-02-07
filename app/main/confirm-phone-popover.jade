@@ -1,0 +1,17 @@
+.popover(tabindex='-1', ng-show='content')
+  .arrow
+  h3.popover-title(ng-bind-html='title', ng-show='title') Confirm {{phone}}
+  .popover-content
+    #addPhone-confirm(twilio-auth)
+      //- span.help-block Press enter the code sent to the phone above in a text message. After 6 attempts, you will need to request another code.
+      p We sent a text to {{phone}}
+      .form-group
+        .input-group
+          .input-group-addon 4 digit
+          input.form-control( max="4", ng-model="code", placeholder="Enter 4 digit code")
+      .form-actions
+        button.btn.btn-success(ng-click="confirmPhone(code, phone); confirming = true;", ng-disabled="confirming") Confirm
+        img(ng-show="confirming", src="http://transloaditkts.s3.amazonaws.com/fakefolder/:original/fb/6d4a0060dd11e49cbcfdd496f89509/fb6d4a0060dd11e49cbcfdd496f89509.gif")
+        button.btn.btn-danger(type='button', ng-click='$hide()') Cancel
+
+      

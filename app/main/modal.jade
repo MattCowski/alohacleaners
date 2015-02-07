@@ -1,0 +1,25 @@
+.modal(tabindex='-1', role='dialog')
+  .modal-dialog
+    .modal-content
+      .modal-header(ng-show='title')
+        button.close(type='button', ng-click='$hide()') ×
+        h4.modal-title(ng-bind-html='title')
+      .modal-body(ng-show='content')
+        h4 Text in a modal
+        p(ng-bind-html='content')
+        pre.
+          \n2 + 3 = {{ 2 + 3 }}          
+        h4 Popover in a modal
+        p
+          | This
+          a.btn.btn-default.popover-test(href='#', role='button', data-title='A Title', data-content='And here\"s some amazing content. It\"s very engaging. right?', bs-popover='') button
+          | should trigger a popover on click.
+        h4 Tooltips in a modal
+        p
+          a.tooltip-test(href='#', data-title='Tooltip', bs-tooltip='') This link
+          | and
+          a.tooltip-test(href='#', data-title='Tooltip', bs-tooltip='') that link
+          | should have tooltips on hover.
+      .modal-footer
+        button.btn.btn-default(type='button', ng-click='$hide()') Close
+        button.btn.btn-primary(type='button', ng-click='$hide()') Save changes
