@@ -1,4 +1,21 @@
-angular.module 'angular', [
+angular
+  .module 'video-background', ['ngVidBg']
+  .controller 'mainCtrl', ($scope) ->    
+    $scope.resources = [
+      'https://0.s3.envato.com/h264-video-previews/97f8b5a9-4281-4fca-8e95-160d70d575bb/8616795.mp4',
+      'http://techslides.com/demos/sample-videos/small.webm'
+      # '*.ogv',
+      # '*.mp4',
+      # '*.swf'
+    ]
+    $scope.poster = 'http://placehold.it/2000&text=you%20may%20want%20to%20have%20a%20poster'
+    $scope.fullScreen = true
+    $scope.muted = true
+    $scope.zIndex = '22'
+
+
+  .module 'angular', [
+  'video-background',
   'ngRoute', 
   'ngAnimate', 
   'ngSanitize',  
