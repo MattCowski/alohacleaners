@@ -125,6 +125,7 @@ gulp.task('libJS', function() {
     './bower_components/angulartics/src/angulartics.js',
     './bower_components/angulartics/src/angulartics-ga.js',
     './bower_components/angulartics/src/angulartics-scroll.js',
+    './bower_components/angular-video-background/dist/vidBg.js',
     ]).pipe(concat('lib.js'))
       .pipe(gulp.dest(dist));
 });

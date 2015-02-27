@@ -1,51 +1,40 @@
 angular
-  .module 'video-background', ['ngVidBg']
-  .controller 'mainCtrl', ($scope) ->    
-    $scope.resources = [
-      'https://0.s3.envato.com/h264-video-previews/97f8b5a9-4281-4fca-8e95-160d70d575bb/8616795.mp4',
-      'http://techslides.com/demos/sample-videos/small.webm'
-      # '*.ogv',
-      # '*.mp4',
-      # '*.swf'
-    ]
-    $scope.poster = 'http://placehold.it/2000&text=you%20may%20want%20to%20have%20a%20poster'
-    $scope.fullScreen = true
-    $scope.muted = true
-    $scope.zIndex = '22'
-
+  # .module 'video-background', ['ngVidBg']
+  
 
   .module 'angular', [
-  'video-background',
-  'ngRoute', 
-  'ngAnimate', 
-  'ngSanitize',  
-  'firebase', 
-  'templates',
-  'ui.bootstrap.carousel' ,
-  'ui.bootstrap.tpls',
-  'ui.calendar', 
-  'mgcrea.ngStrap.affix', 
-  'mgcrea.ngStrap.helpers.dimensions',
-  # 'ui.mask',
-  'ui.bootstrap.typeahead',
-  'ui.bootstrap.tabs',
-  'ui.bootstrap.progressbar',
-  'ui.bootstrap.dropdown',
-  'ui.bootstrap.datepicker',
-  'ui.bootstrap.collapse',
-  'ui.bootstrap.buttons',
-  'ui.bootstrap.accordion',
-  'mgcrea.ngStrap.popover',
-  'mgcrea.ngStrap.tooltip', 
-  'mgcrea.ngStrap.modal', 
-  'mgcrea.ngStrap.navbar', 
-  'mgcrea.ngStrap.alert', 
-  'angulartics', 'angulartics.google.analytics', 'angulartics.scroll',
-  # or rename with gulp-ng-annotate to solve conflict
-  # https://github.com/mgcrea/angular-strap/issues/521 
-  # 'twilio-client-js'
-  # 'angularFileUpload', 
-]
+    # 'video-background',
+    'ngVidBg',
+    'ngRoute', 
+    'ngAnimate', 
+    'ngSanitize',  
+    'firebase', 
+    'templates',
+    'ui.bootstrap.carousel' ,
+    'ui.bootstrap.tpls',
+    'ui.calendar', 
+    'mgcrea.ngStrap.affix', 
+    'mgcrea.ngStrap.helpers.dimensions',
+    # 'ui.mask',
+    'ui.bootstrap.typeahead',
+    'ui.bootstrap.tabs',
+    'ui.bootstrap.progressbar',
+    'ui.bootstrap.dropdown',
+    'ui.bootstrap.datepicker',
+    'ui.bootstrap.collapse',
+    'ui.bootstrap.buttons',
+    'ui.bootstrap.accordion',
+    'mgcrea.ngStrap.popover',
+    'mgcrea.ngStrap.tooltip', 
+    'mgcrea.ngStrap.modal', 
+    'mgcrea.ngStrap.navbar', 
+    'mgcrea.ngStrap.alert', 
+    'angulartics', 'angulartics.google.analytics', 'angulartics.scroll',
+    # or rename with gulp-ng-annotate to solve conflict
+    # https://github.com/mgcrea/angular-strap/issues/521 
+    # 'twilio-client-js'
+    # 'angularFileUpload', 
+  ]
   .config ($routeProvider, $httpProvider, $locationProvider) ->
     $locationProvider.html5Mode(false)
 
@@ -269,6 +258,23 @@ angular
       #   $firebase(ref.child('comments').child(postId)).$asArray()
 
   
+  .controller 'mainCtrl', ($scope) ->    
+    $scope.resources = [
+      'https://0.s3.envato.com/h264-video-previews/97f8b5a9-4281-4fca-8e95-160d70d575bb/8616795.mp4',
+
+
+
+      # 'http://techslides.com/demos/sample-videos/small.webm'
+      # '*.ogv',
+      # '*.mp4',
+      # '*.swf'
+    ]
+    $scope.poster = 'http://placehold.it/2000&text=you%20may%20want%20to%20have%20a%20poster'
+    $scope.fullScreen = true
+    $scope.muted = true
+    $scope.zIndex = '-1'
+
+
   .controller 'LoginCtrl', (Requests, $http, $scope, Auth, $location, ENVIROMENT) ->    
     $scope.auth = Auth
     @authRequestCode = (phone) =>
