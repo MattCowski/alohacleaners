@@ -39,6 +39,9 @@ angular
     $locationProvider.html5Mode(false)
 
     $routeProvider
+      .when '/inserted',  
+        templateUrl: "main/inserted.html"
+        controller: "HomeCtrl"
       .when '/',
         templateUrl: "main/home.html"
         controller: "HomeCtrl"

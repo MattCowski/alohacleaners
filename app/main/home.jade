@@ -1,11 +1,12 @@
-div(ng-controller="mainCtrl")
-  video(loop="loop", autoplay, style="background-image: url('http://bkwld.com/img/misc/grid.png'); position: absolute; top: -21px; left: 0px; min-width: 100%;")
+//- #myCarousel(style='height: 405px')
+div(ng-controller="mainCtrl", style="height: 540px;background-image: url('http://bkwld.com/img/misc/grid.png');top: -21px; left: 0px;")
+  h1 Some Title Here
+  button.btn.btn-lg.btn-success Continue!
+  video(loop="loop", autoplay, style=" position: absolute; top: -21px; left: 0px; min-width: 100%;z-index: -1;")
     source(src='https://s3.amazonaws.com/kristile.com/videohiveFloorDemo.mp4', type="video/webm")
     //- <source src="/video/features/main.mp4", type="video/mp4">
   //- vid-bg(resources="resources", poster="poster", full-screen="fullScreen", muted="muted", z-index="zIndex")
-  button.btn.btn-lg.btn-success foobar
 
-  button(ng-click="resources = ['http://demosthenes.info/assets/videos/polina.webm']") Change resource
 
 div.visible-xs
   a.btn.btn-lg.btn-block.btn-danger(href="tel:+18474387372") Click to Call 1 (847) 438 7372
